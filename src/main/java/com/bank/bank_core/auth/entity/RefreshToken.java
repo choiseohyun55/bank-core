@@ -1,6 +1,6 @@
 package com.bank.bank_core.auth.entity;
 
-import com.bank.bank_core.common.BaseEntity;
+import com.bank.bank_core.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -33,5 +33,8 @@ public class RefreshToken extends BaseEntity {
         this.userId = userId;
         this.token = token;
         this.expiredAt = expiredAt;
+    }
+    public void updateToken(String newToken) {
+        this.token = newToken;
     }
 }

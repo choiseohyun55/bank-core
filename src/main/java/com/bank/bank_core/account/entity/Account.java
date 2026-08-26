@@ -1,6 +1,6 @@
 package com.bank.bank_core.account.entity;
 
-import com.bank.bank_core.common.BaseEntity;
+import com.bank.bank_core.common.entity.BaseEntity;
 import com.bank.bank_core.user.entity.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

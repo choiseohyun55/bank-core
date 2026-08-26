@@ -1,7 +1,7 @@
 package com.bank.bank_core.transaction.entity;
 
 import com.bank.bank_core.account.entity.Account;
-import com.bank.bank_core.common.BaseEntity;
+import com.bank.bank_core.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
