@@ -5,10 +5,7 @@ import com.bank.bank_core.auth.dto.TokenResponse;
 import com.bank.bank_core.auth.entity.RefreshToken;
 import com.bank.bank_core.auth.repository.RefreshTokenRepository;
 import com.bank.bank_core.global.jwt.JwtTokenProvider;
-import com.bank.bank_core.user.dto.UserLoginRequest;
-import com.bank.bank_core.user.dto.UserLoginResponse;
-import com.bank.bank_core.user.dto.UserSignupRequest;
-import com.bank.bank_core.user.dto.UserSignupResponse;
+import com.bank.bank_core.user.dto.*;
 import com.bank.bank_core.user.entity.User;
 import com.bank.bank_core.user.repository.UserRepository;
 import jdk.jshell.spi.ExecutionControl;
@@ -76,5 +73,21 @@ public class UserService {
 
         // Token 응답 반환
         return TokenResponse.of(accessToken, refreshToken);
+    }
+
+    @Transactional
+    public void logout(UserLogoutRequest request){
+        String refreshToken = request.getRefreshToken();
+
+        // Refresh Token 유효성 검증
+        if(!jwtTokenProvider.validateToken(refreshToken)){
+            throw new IllegalArgumentException("존재하지 않는 토큰입니다.");
+        }
+        //DB에서 해당 토큰 존재 여부 확인 후 삭제
+        RefreshToken token = refreshTokenRepository.findByToken(refreshToken)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 토큰입니다."));
+
+        refreshTokenRepository.delete(token);
+
     }
 }
