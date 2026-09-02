@@ -1,10 +1,9 @@
 package com.bank.bank_core.user.controller;
 
+import com.bank.bank_core.auth.dto.TokenResponse;
 import com.bank.bank_core.user.dto.UserLoginRequest;
-import com.bank.bank_core.user.dto.UserLoginResponse;
 import com.bank.bank_core.user.dto.UserSignupRequest;
 import com.bank.bank_core.user.dto.UserSignupResponse;
-import com.bank.bank_core.user.repository.UserRepository;
 import com.bank.bank_core.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +24,9 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
     @PostMapping("/login")
-    public ResponseEntity<UserLoginResponse> login(@RequestBody UserLoginRequest request){
-        UserLoginResponse response = userService.login(request);
+    public ResponseEntity<TokenResponse> login(@RequestBody UserLoginRequest request){
+        TokenResponse response = userService.login(request);
         return ResponseEntity.ok(response);
     }
+
 }

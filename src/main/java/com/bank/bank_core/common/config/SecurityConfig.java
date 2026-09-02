@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/**").permitAll() // 회원가입, 로그인, 재발급은 누구나 접근 가능
+                        .requestMatchers("/api/users/**", "/api/auth/**").permitAll() // 회원가입, 로그인, 재발급은 누구나 접근 가능
                         .anyRequest().authenticated()
                 );
         return http.build();
