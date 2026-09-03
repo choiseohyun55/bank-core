@@ -7,8 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public class TokenResponse {
     private String grantType; // Bearer
-    private String refreshToken;
     private String accessToken;
+    private String refreshToken;
+
 
     public static TokenResponse of(String accessToken, String refreshToken) {
         return new TokenResponse("Bearer", accessToken, refreshToken);

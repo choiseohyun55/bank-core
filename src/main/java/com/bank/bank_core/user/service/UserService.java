@@ -43,7 +43,7 @@ public class UserService {
         return UserSignupResponse.from(savedUser);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public TokenResponse login(UserLoginRequest request){
         // 이메일 존재 여부 확인
         User user = userRepository.findByEmail(request.getEmail())
