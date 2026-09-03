@@ -1,11 +1,8 @@
 package com.bank.bank_core.auth.entity;
 
-import com.bank.bank_core.common.BaseEntity;
+import com.bank.bank_core.common.entity.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "refresh_tokens")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class RefreshToken extends BaseEntity {
 
     @Id
@@ -33,5 +31,9 @@ public class RefreshToken extends BaseEntity {
         this.userId = userId;
         this.token = token;
         this.expiredAt = expiredAt;
+    }
+    public void updateToken(String newToken, LocalDateTime newExpiredAt) {
+        this.token = newToken;
+        this.expiredAt = newExpiredAt;
     }
 }
